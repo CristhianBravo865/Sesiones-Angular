@@ -35,6 +35,7 @@
 
   <a [href]="webpage" target="_blank">Visita mi sitio Web</a>
 </div>
+
 <form (submit)="newHobby(hobby.value); $event.preventDefault()">
   <input #hobby />
   <button type="submit">Agregar hobby</button>
@@ -43,5 +44,14 @@
 <div class="black">
   <h1> helloworld </h1>
 </div>
+
 <app-hello-world></app-hello-world>
 
+<div class="black">
+  <h1>{{ title }}</h1>
+</div>
+
+<div class="ash" *ngFor="let post of posts">
+  <h2>{{ post.title }}</h2>
+  <h3>{{ post.body }}</h3>
+</div>
