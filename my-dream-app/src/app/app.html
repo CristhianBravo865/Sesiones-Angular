@@ -1,3 +1,9 @@
+<ul class="menu">
+  <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a></li>
+  <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+  <li><a routerLink="/hello" routerLinkActive="active">Hello</a></li>
+</ul>
+
 <h1>Desde app.component</h1>
 
 <form (submit)="addUser(newUser)">
