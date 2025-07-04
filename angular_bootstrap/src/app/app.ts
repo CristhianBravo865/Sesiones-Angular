@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class AppComponent {
   videoList: { name: string; slug: string; embed: string; url: string; safeUrl?: SafeResourceUrl }[] = [];
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, public router: Router) {
     this.videoList = [
       {
         name: 'Video 1',
@@ -28,7 +29,6 @@ export class AppComponent {
       }
     ];
 
-    // Sanear las URLs
     this.videoList.forEach(item => {
       item.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(item.url);
     });

@@ -7,35 +7,42 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Inicio</a>
+          <a class="nav-link" routerLink="/inicio" routerLinkActive="active">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Acerca</a>
+          <a class="nav-link" routerLink="/acerca" routerLinkActive="active">Acerca</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contacto</a>
+          <a class="nav-link" routerLink="/contacto" routerLinkActive="active">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/carrito" routerLinkActive="active">🛒 Carrito</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container mt-4">
-  <h1>Bienvenido a MiApp</h1>
-  <p>Esta es una navbar sencilla con Bootstrap en Angular.</p>
+<!-- SOLO muestra el contenido de bienvenida en la ruta /inicio -->
+<ng-container *ngIf="router.url === '/inicio'">
+  <div class="container mt-4">
+    <h1>Bienvenido a MiApp</h1>
+    <p>Esta es una navbar sencilla con Bootstrap en Angular.</p>
 
-  <div *ngFor="let item of videoList" class="mb-4">
-    <h4>{{ item.name }}</h4>
-    <a [href]="'/' + item.slug">{{ item.name }}</a>
-
-    <div style="position:relative;height:0;padding-bottom:35%;">
-      <iframe width="840" height="440"
-              [src]="getEmbedUrl(item)"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-      </iframe>
+    <div *ngFor="let item of videoList" class="mb-4">
+      <h4>{{ item.name }}</h4>
+      <a [routerLink]="item.slug">{{ item.name }}</a>
+      <div style="position:relative;height:0;padding-bottom:35%;">
+        <iframe width="840" height="440"
+                [src]="getEmbedUrl(item)"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+      </div>
+      <hr />
     </div>
-    <hr />
   </div>
-</div>
+</ng-container>
+
+<router-outlet></router-outlet>
